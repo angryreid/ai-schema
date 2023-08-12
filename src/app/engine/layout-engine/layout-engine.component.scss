@@ -1,0 +1,19 @@
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background-color: #f5f5f5;
+  .layout-header {
+    border-bottom: 1px solid #cccccc;
+  }
+
+  .layout-body {
+    flex: 1;
+  }
+
+  .layout-footer {
+    border-top: 1px solid #cccc;
+  }
+}

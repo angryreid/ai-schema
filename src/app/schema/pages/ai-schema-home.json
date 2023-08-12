@@ -1,0 +1,75 @@
+{
+  "id": "ai-schema-home",
+  "layout": {
+    "header": {
+      "children": [
+        {
+          "class": "",
+          "component": "mat-slide-toggle",
+          "props": {
+            "text": "Home!"
+          }
+        }
+      ]
+    },
+    "body": {
+      "children": [
+        {
+          "class": "",
+          "component": "mat-slide-toggle",
+          "props": {
+            "text": "Welcome to Copilot!"
+          }
+        },
+        {
+          "class": "",
+          "component": "mat-button",
+          "props": {
+            "color": "primary",
+            "variant": "raised",
+            "size": "large",
+            "icon": "home",
+            "iconPosition": "left",
+            "iconColor": "primary",
+            "iconSize": "large",
+            "iconVariant": "raised",
+            "iconText": "Welcome to Copilot!"
+          }
+        },
+        {
+          "class": "",
+          "component": "mat-divider",
+          "props": {
+            "text": "Welcome to Copilot!",
+            "color": "primary"
+          }
+        },
+        {
+          "class": "",
+          "component": "mat-slide-toggle",
+          "props": {
+            "text": "hello to Copilot!"
+          }
+        },
+        {
+          "class": "",
+          "component": "app-nc-card",
+          "props": {
+            "text": "hello to Copilot!"
+          }
+        }
+      ]
+    },
+    "footer": {
+      "children": [
+        {
+          "class": "",
+          "component": "mat-slide-toggle",
+          "props": {
+            "text": "Footer here"
+          }
+        }
+      ]
+    }
+  }
+}

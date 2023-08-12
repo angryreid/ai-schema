@@ -1,0 +1,38 @@
+{
+  "id": "ai-schema-about",
+  "layout": {
+    "header": {
+      "children": [
+        {
+          "class": "",
+          "component": "mat-slide-toggle",
+          "props": {
+            "text": "Home!"
+          }
+        }
+      ]
+    },
+    "body": {
+      "children": [
+        {
+          "class": "",
+          "component": "mat-slide-toggle",
+          "props": {
+            "text": "Welcome to Copilot!"
+          }
+        }
+      ]
+    },
+    "footer": {
+      "children": [
+        {
+          "class": "",
+          "component": "mat-slide-toggle",
+          "props": {
+            "text": "Footer here"
+          }
+        }
+      ]
+    }
+  }
+}
