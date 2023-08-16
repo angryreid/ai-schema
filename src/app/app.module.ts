@@ -9,13 +9,15 @@ import { LayoutEngineComponent } from './engine/layout-engine/layout-engine.comp
 import { WidgetEngineComponent } from './engine/widget-engine/widget-engine.component';
 import { LibModule } from './libs/lib.module';
 import { DynamicLandingComponent } from './engine/dynamic-landing/dynamic-landing.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LayoutEngineComponent,
     WidgetEngineComponent,
-    DynamicLandingComponent
+    DynamicLandingComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
