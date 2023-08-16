@@ -1,0 +1,36 @@
+#dashboard{
+    width: 1260px;
+    height: 100vh;
+    margin: 0 auto;
+    border: 1px solid black;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+
+    #header,
+    #container{
+        display: block;
+        width: 100%;
+    }
+
+    #header{
+        height: 100px;
+    }
+    #container{
+        display: flex;
+        justify-content: space-between;
+        flex-grow: 1;
+        #upload,
+        #progess{
+            width: 50%;
+            height: 100%;
+        }
+        #upload{
+            border-right: 1px solid black;
+        }
+    }
+}
+
+.boarder-bottom{
+    border-bottom: 1px solid black;
+}
