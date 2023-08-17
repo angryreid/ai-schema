@@ -10,6 +10,7 @@ import { WidgetEngineComponent } from './engine/widget-engine/widget-engine.comp
 import { LibModule } from './libs/lib.module';
 import { DynamicLandingComponent } from './engine/dynamic-landing/dynamic-landing.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { SchemaButtonComponent } from './libs/schema-button/schema-button.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     LayoutEngineComponent,
     WidgetEngineComponent,
     DynamicLandingComponent,
-    DashboardComponent
+    DashboardComponent,
+    SchemaButtonComponent
   ],
   imports: [
     BrowserModule,
