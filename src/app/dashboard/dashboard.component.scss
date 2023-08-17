@@ -6,7 +6,7 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-
+    background: #5c9ad5;
     #header,
     #container{
         display: block;
@@ -15,6 +15,12 @@
 
     #header{
         height: 100px;
+        button{
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+            background: #5c9ad5;
+        }
     }
     #container{
         display: flex;
@@ -22,11 +28,38 @@
         flex-grow: 1;
         #upload,
         #progess{
+            // display: flex;
             width: 50%;
             height: 100%;
+            // background: #5c9ad5;
+            #progressWindow{
+                margin: 20px;
+                padding-top: 50%;
+                border: dashed;
+                height: 80px;
+                #progressBar{
+                    margin: 20px;
+                }
+            }
+            #export{
+                display: flex;
+                align-items: flex-end;
+                justify-content: center;
+                margin: 20px;
+                button {
+                    padding: 2% 40%;
+                    border-radius: 10px;
+                    background: #5c9ad5;
+                    // box-shadow: 0px 0px 2px 2px rgb(0,0,0);
+                }
+            }
         }
         #upload{
             border-right: 1px solid black;
+        }
+        ::ng-deep .mat-progress-bar {
+            height: 15px;
+            border-radius: 10px;
         }
     }
 }
