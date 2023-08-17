@@ -1,0 +1,8 @@
+<div *ngIf="isBasic; else primaryTemp">
+    <button mat-raised-button>{{buttonText}}</button>
+</div>
+<ng-template #primaryTemp>
+    <div>
+        <button mat-raised-button color="primary">{{buttonText}}</button>
+    </div>
+</ng-template>

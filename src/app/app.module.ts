@@ -11,6 +11,8 @@ import { LibModule } from './libs/lib.module';
 import { DynamicLandingComponent } from './engine/dynamic-landing/dynamic-landing.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { SchemaButtonComponent } from './libs/schema-button/schema-button.component';
+
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     LayoutEngineComponent,
     WidgetEngineComponent,
     DynamicLandingComponent,
-    DashboardComponent
+    DashboardComponent,
+    SchemaButtonComponent
   ],
   imports: [
     BrowserModule,
