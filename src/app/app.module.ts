@@ -10,6 +10,7 @@ import { WidgetEngineComponent } from './engine/widget-engine/widget-engine.comp
 import { LibModule } from './libs/lib.module';
 import { DynamicLandingComponent } from './engine/dynamic-landing/dynamic-landing.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     AppRoutingModule,
     NcMatModule,
     LibModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
