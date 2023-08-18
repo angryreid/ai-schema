@@ -1,7 +1,10 @@
 <div id="dashboard">
     <div id="header" class="boarder-bottom">
-        <button>Home</button>
+        <div id="headerText">UI MASTER</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <button>About us</button>
+    </div>
+    <div id="description">
+        We will use AI algorithms to help you solve all your troubles. <br>All you need to do is import the design into our Intelligent UI Master, and a fresh schema template will be generated for you immediately.
     </div>
     <div id="container">
         <div id="upload">
@@ -10,12 +13,16 @@
         </div>
         <div id="progess">
             <div id="progressWindow" >
-                <div id="progressBar" *ngIf="displayProgressBar">
-                    <mat-progress-bar mode="determinate" [value]="value"></mat-progress-bar>
+                <div id="progressImg">
+                    <img src="assets/images/数据产出.svg">
+                </div>
+                <div id="progressText"><label><b>Customersize a designed template</b><br>Choose from thousands of design from you</label></div>
+                <div id="progressBar" >
+                    <mat-progress-bar *ngIf="displayProgressBar" mode="determinate" [value]="value"></mat-progress-bar>
                 </div>
             </div>
             <div id="export">
-                <button>export code</button>
+                <button *ngIf="displayExportButton">export code</button>
             </div>
         </div>
     </div>

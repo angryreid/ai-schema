@@ -1,26 +1,53 @@
 #dashboard{
-    width: 1260px;
-    height: 100vh;
+    width: 1024px;
+    height: 600px;
     margin: 0 auto;
-    border: 1px solid black;
+    // border: 1px solid black;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    background: #5c9ad5;
+    // background: #5c9ad5;
     #header,
     #container{
         display: block;
         width: 100%;
     }
+    #description {
+        padding-bottom: 20px;
+        margin: 20px;
+    }
 
     #header{
         height: 100px;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        background: #0143e2;
+        opacity: 0.8;
+        #headerText {
+            font-size: xx-large;
+            font-family: myFont;
+            cursor: pointer;
+            color: #FFFF;
+        }
         button{
             padding: 10px;
             margin: 10px;
             border-radius: 10px;
-            background: #5c9ad5;
+            font-size: 18px;
+            color: #FFFF;
+            // border-color: #FFFF;
+            background: transparent;
+            border: none;
         }
+        button:hover {
+            color: #000102;
+            cursor: pointer;
+        }
+    }
+    #description {
+        color: #0143e2;
+        opacity: 0.6;
     }
     #container{
         display: flex;
@@ -29,16 +56,36 @@
         #upload,
         #progess{
             // display: flex;
+            margin: 0 20px;
+            box-shadow: 1px 1px 1px 1px #4A4A4A;
+            border-radius: 10px;
             width: 50%;
             height: 100%;
             // background: #5c9ad5;
             #progressWindow{
                 margin: 20px;
-                padding-top: 50%;
-                border: dashed;
-                height: 80px;
+                // padding-bottom: 10%;
+                // border: dashed;
+                height: auto;
                 #progressBar{
                     margin: 20px;
+                }
+                #progressText {
+                    display: flex;
+                    justify-content: center;
+                    padding-bottom: 10px;
+                    label b {
+                        display: flex;
+                        justify-content: center;
+                        font-size: 16px;
+                    }
+                }
+                #progressImg  {
+                    display: flex;
+                    justify-content: center;
+                    img{
+                        max-width: 50%;
+                    }
                 }
             }
             #export{
@@ -49,13 +96,16 @@
                 button {
                     padding: 2% 40%;
                     border-radius: 10px;
-                    background: #5c9ad5;
+                    background: #0143e2;
+                    color: #FFFF;
+                    border-color: #FFFF;
                     // box-shadow: 0px 0px 2px 2px rgb(0,0,0);
                 }
             }
         }
         #upload{
-            border-right: 1px solid black;
+            box-shadow: 1px 1px 1px 1px #4A4A4A;
+            border-radius: 10px;
         }
         ::ng-deep .mat-progress-bar {
             height: 15px;
@@ -65,5 +115,7 @@
 }
 
 .boarder-bottom{
-    border-bottom: 1px solid black;
+    // border: 1px solid black;
+    // border-radius: 10px;
 }
+
