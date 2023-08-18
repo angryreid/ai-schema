@@ -59,14 +59,14 @@
             height: 100%;
             #uploadBox{
                 height: 100%;
+                margin: 20px;
                 .file{
                     position: relative;
                     // display: flex;
                     // align-items: center;
                     // justify-content: center;
-                    background-color: #D0EEFF;
+                    background-color: #6af59a;
                     border: 2.4px black dashed;
-                    margin: 20px;
                     padding: 2px;
                     overflow: hidden;
                     color: #3bdbf7;
@@ -101,6 +101,7 @@
                     top: 50%;
                     transform: translate(0,-50%);
                     width: 100%;
+                    font-size: large;
                     height: auto;
                     display: flex;
                     justify-content: center;
