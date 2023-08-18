@@ -1,5 +1,5 @@
 #dashboard{
-    width: 1260px;
+    max-width: 1260px;
     height: 100vh;
     margin: 0 auto;
     border: 1px solid black;
@@ -56,6 +56,65 @@
         }
         #upload{
             border-right: 1px solid black;
+            height: 100%;
+            #uploadBox{
+                height: 100%;
+                .file{
+                    position: relative;
+                    // display: flex;
+                    // align-items: center;
+                    // justify-content: center;
+                    background-color: #D0EEFF;
+                    border: 2.4px black dashed;
+                    margin: 20px;
+                    padding: 2px;
+                    overflow: hidden;
+                    color: #3bdbf7;
+                    line-height: 20px;
+                    text-decoration: none;
+                    height: 60%;
+                    a{
+                        text-decoration: none;
+                        
+                        input{
+                            position: absolute;
+                            display: block;
+                            width: 100%;
+                            height: 100%;
+                            opacity: 0;
+                            z-index: 11;
+                        }
+                    }
+                    a:hover{
+                        background:#AADFFD;
+                        border-color:#78c3f3;
+                        color: #004974;
+                        text-decoration: none;
+                    }
+                    a:link{
+                        background-color: #D0EEFF;
+                    }
+    
+                }
+                .selectFileBox{
+                    position: relative;
+                    top: 50%;
+                    transform: translate(0,-50%);
+                    width: 100%;
+                    height: auto;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: row;
+                }
+            }
+            // form{
+            //     height: 95%;
+            //     margin: 5px;
+            //     border: 2px solid #78c3f3;
+            // }
+            
+            
         }
         ::ng-deep .mat-progress-bar {
             height: 15px;
