@@ -1,3 +1,4 @@
+<app-loading [showLoading]="loading"></app-loading>
 <div id="dashboard">
     <div id="header" class="boarder-bottom">
         <button>Home</button>
@@ -5,8 +6,21 @@
     </div>
     <div id="container">
         <div id="upload">
-            upload
-            <button (click)="convert()">start convert</button>
+            <!-- <button (click)="convert()">start convert</button> -->
+            <div id="uploadBox">
+                <div class="file">
+                    <a href="javascript:;">
+                        <input type="file" name="" id="fileInput" (change)="handleFileInput($event)">
+                        <div class="selectFileBox">
+                            <div id="uploadDesc">Select file</div>
+                        </div>
+                    </a>
+                </div>
+                <div id="fileName" *ngIf="fileName!==''">
+                    seleted file:{{fileName}}<br>
+                    last modify:{{fileLastModifyTime}}
+                </div>
+            </div>
         </div>
         <div id="progess">
             <div id="progressWindow" >
