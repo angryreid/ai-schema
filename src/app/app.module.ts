@@ -13,6 +13,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { SchemaButtonComponent } from './libs/schema-button/schema-button.component';
 
+import { LoadingComponent } from './loading/loading.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { SchemaButtonComponent } from './libs/schema-button/schema-button.compon
     WidgetEngineComponent,
     DynamicLandingComponent,
     DashboardComponent,
-    SchemaButtonComponent
+    SchemaButtonComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,8 @@ import { SchemaButtonComponent } from './libs/schema-button/schema-button.compon
     NcMatModule,
     LibModule,
     BrowserAnimationsModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
