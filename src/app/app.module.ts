@@ -10,7 +10,11 @@ import { WidgetEngineComponent } from './engine/widget-engine/widget-engine.comp
 import { LibModule } from './libs/lib.module';
 import { DynamicLandingComponent } from './engine/dynamic-landing/dynamic-landing.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { SchemaButtonComponent } from './libs/schema-button/schema-button.component';
+
+import { LoadingComponent } from './loading/loading.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,14 +23,17 @@ import { SchemaButtonComponent } from './libs/schema-button/schema-button.compon
     WidgetEngineComponent,
     DynamicLandingComponent,
     DashboardComponent,
-    SchemaButtonComponent
+    SchemaButtonComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NcMatModule,
     LibModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatProgressBarModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
