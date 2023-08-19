@@ -24,6 +24,7 @@ export class DashboardComponent implements OnInit {
   value = 0;
   seconds: number = 0;
   public displayProgressBar = false;
+  public displayExportButton = false;
   
   handleFileInput(event: any) {
     console.log(event.target.files[0]);
@@ -50,6 +51,7 @@ export class DashboardComponent implements OnInit {
       if (this.seconds === 11) {
         subscribe.unsubscribe();
         this.displayProgressBar = !this.displayProgressBar;
+        this.displayExportButton = !this.displayExportButton;
       }
     });
   }
