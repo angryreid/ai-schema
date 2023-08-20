@@ -3,6 +3,8 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import axios from 'axios';
+import { ResponseData } from "./common.type";
+import { SchemaData } from "../models/layout.modle";
 
 @Injectable({
     providedIn: 'root',
@@ -67,5 +69,39 @@ export class ApiService {
         })
     }
 
+    public getSchemaJsonData(resposne: ResponseData, name: string) {
+        const tempSchema: SchemaData = {
+            id: "ai-schema-" + name,
+            layout: {
+                header: {
+                    children: []
+                },
+                body: {
+                    children: []
+                },
+                footer: {
+                    children: []
+                }
+            }
+        };
+        const widgetMapping = new Map<string, string>([
+            ['button-basic', 'app-schema-button'],
+            ['button-primary', 'app-schema-button'],
+            ['card', 'app-schema-card'],
+            ['table', 'app-schema-table'],
+            ['radio', 'app-schema-radio'],
+            ['input', 'app-schema-input']
+        ]);
+        resposne.predictions.forEach(data => {
+            tempSchema.layout.body?.children.push({
+                class: '',
+                component: widgetMapping.get(data.class),
+                props: {
+                    isBasic: data.class === 'button-basic'
+                }
+            });
+        });
+        return tempSchema;
+    }
 
 }
