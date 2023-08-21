@@ -2,22 +2,28 @@
 <div id="dashboard">
     <div id="header" class="boarder-bottom">
         <div id="headerText">UI MASTER</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <button>About us</button>
+        <!-- <button>About us</button> -->
     </div>
     <div id="description">
-        We will use AI algorithms to help you solve all your troubles. <br>All you need to do is import the design into our Intelligent UI Master, and a fresh schema template will be generated for you immediately.
+        We will use AI algorithms to help you solve all your troubles. 
     </div>
+    <div id="description_1">All you need to do is import the design into our Intelligent UI Master, and a fresh schema template will be generated for you immediately.</div>
     <div id="container">
         <div id="upload">
-            <!-- <button (click)="convert()">start convert</button> -->
             <div id="uploadBox">
-                <div class="file">
-                    <a href="javascript:;">
-                        <input type="file" name="" id="fileInput" (change)="handleFileInput($event)">
-                        <div class="selectFileBox">
-                            <div id="uploadDesc">Select file</div>
+                <div id="progressWindow">
+                    <div id="uploadImg">
+                        <img src="assets/images/uploadDesign.svg">
+                    </div>
+                        <div class="drag-area">
+                            <div class="icon"> <i class="fas fa-cloud-upload-alt"></i></div>
+                            <header> Drag & Drop to Upload File</header>
+                            <span>OR</span>
+                            <button id="browsefile" (click)="browsefileEvent($event)">Browse File</button>
+                            <form id="inputfield">
+                                <input type="input" hidden>
+                            </form>
                         </div>
-                    </a>
                 </div>
                 <div id="fileName" *ngIf="fileName!==''">
                     seleted file:{{fileName}}<br>
@@ -28,7 +34,7 @@
         <div id="progess">
             <div id="progressWindow" >
                 <div id="progressImg">
-                    <img src="assets/images/数据产出.svg">
+                    <img src="assets/images/dataOutput.svg">
                 </div>
                 <div id="progressText"><label><b>Customersize a designed template</b><br>Choose from thousands of design from you</label></div>
                 <div id="progressBar" >
@@ -36,7 +42,7 @@
                 </div>
             </div>
             <div id="export">
-                <button *ngIf="displayExportButton">export code</button>
+                <button *ngIf="displayExportButton">Export Code</button>
             </div>
         </div>
     </div>

@@ -12,31 +12,83 @@
     z-index: 999;
 
 }
-.progress-5 {
-    width:80px;
-    height:40px;
-    border-radius: 0 5% 5% 0;
-    border:2px solid #000;
-    padding:3px;
-    background: 
-      repeating-linear-gradient(90deg,#000 0 10px,#0000 0 16px) 
-      0/0% no-repeat content-box content-box;
+
+  //  loading 3 balls
+
+  .three-balls-bounce {
     position: relative;
-    animation:p5 2s infinite steps(6);
-    z-index: 1000;
+    width: 200px;
+    height: 62px;
   }
-  .progress-5::before {
-    content:"";
+
+  .three-balls-bounce .circle {
+    width: 20px;
+    height: 20px;
     position: absolute;
-    top: 50%;
-    left:100%;
-    transform: translateY(-50%);
-    width:10px;
-    height: 10px;
-    border-radius: 0 10% 10% 0;
-    border: 2px solid #000;
-    z-index: 1000;
+    border-radius: 50%;
+    background-color: cornflowerblue;
+    left: 15%;
+    transform-origin: 50%;
+    animation: balls-circle 0.5s alternate ease infinite;
   }
-  @keyframes p5 {
-      100% {background-size:120%}
+
+  .three-balls-bounce .shadow {
+    width: 20px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    transform-origin: 50%;
+    top: 62px;
+    z-index: -1;
+    left: 15%;
+    filter: blur(1px);
+    animation: balls-shadow 0.5s alternate ease infinite;
+
   }
+
+  .three-balls-bounce .circle:nth-child(2),
+  .three-balls-bounce .shadow:nth-child(4) {
+    left: 45%;
+    animation-delay: 0.2s;
+  }
+
+  .three-balls-bounce .circle:nth-child(3),
+  .three-balls-bounce .shadow:nth-child(5) {
+    left: auto;
+    right: 15%;
+    animation-delay: 0.3s;
+  }
+
+  @keyframes balls-circle {
+    from {
+      top: 60px;
+      height: 5px;
+      border-radius: 50px 50px 25px 25px;
+      transform: scale(1);
+    }
+    40% {
+      height: 20px;
+      border-radius: 50%;
+      transform: scale(1);
+    }
+    to {
+      top: 0%;
+    }
+  }
+
+  @keyframes balls-shadow {
+    from {
+      transform: scale(1.5);
+    }
+    40% {
+      transform: scale(1);
+      opacity: 0.7;
+    }
+    to {
+      transform: scale(0.2);
+      opacity: 0.4;
+    }
+  }
+
+
