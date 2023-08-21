@@ -11,5 +11,5 @@ export class LoadingComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  @Input() showLoading: boolean=false;
+  @Input() showLoading: boolean=true;
 }
