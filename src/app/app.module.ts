@@ -15,6 +15,10 @@ import { SchemaButtonComponent } from './libs/schema-button/schema-button.compon
 
 import { LoadingComponent } from './loading/loading.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SchemaCardComponent } from './libs/schema-card/schema-card.component';
+import { SchemaTableComponent } from './libs/schema-table/schema-table.component';
+import { SchemaRadioComponent } from './libs/schema-radio/schema-radio.component';
+import { SchemaInputComponent } from './libs/schema-input/schema-input.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,11 @@ import { HttpClientModule } from '@angular/common/http';
     DynamicLandingComponent,
     DashboardComponent,
     SchemaButtonComponent,
-    LoadingComponent
+    LoadingComponent,
+    SchemaCardComponent,
+    SchemaTableComponent,
+    SchemaRadioComponent,
+    SchemaInputComponent
   ],
   imports: [
     BrowserModule,

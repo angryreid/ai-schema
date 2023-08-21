@@ -18,3 +18,7 @@ export interface Widget {
   props?: any;
 }
 
+export interface SchemaData {
+  id?: string;
+  layout: Layout;
+}
