@@ -9,6 +9,11 @@ import { MatButton } from '@angular/material/button';
 import { MatCheckbox } from '@angular/material/checkbox';
 import { MatDivider } from '@angular/material/divider';
 import { NcCardComponent } from '../libs/nc-card/nc-card.component';
+import { SchemaButtonComponent } from '../libs/schema-button/schema-button.component';
+import { SchemaCardComponent } from '../libs/schema-card/schema-card.component';
+import { SchemaTableComponent } from '../libs/schema-table/schema-table.component';
+import { SchemaRadioComponent } from '../libs/schema-radio/schema-radio.component';
+import { SchemaInputComponent } from '../libs/schema-input/schema-input.component';
 
 // injectable decorator
 @Injectable({
@@ -16,7 +21,7 @@ import { NcCardComponent } from '../libs/nc-card/nc-card.component';
 })
 export class WidgetEngineService {
   constructor() { }
-  
+
   getComponentType(Name: string): Type<any> {
     // return angular material  type based on  name
     switch (Name) {
@@ -40,8 +45,18 @@ export class WidgetEngineService {
         return MatDivider;
       case 'app-nc-card':
         return NcCardComponent;
+      case 'app-schema-button':
+        return SchemaButtonComponent;
+      case 'app-schema-card':
+        return SchemaCardComponent;
+      case 'app-schema-table':
+        return SchemaTableComponent;
+      case 'app-schema-radio':
+        return SchemaRadioComponent;
+      case 'app-schema-input':
+        return SchemaInputComponent;
       default:
         return MatSlideToggle;
+    }
   }
-}
 }
