@@ -23,6 +23,7 @@ export class DashboardComponent implements OnInit {
 
   value = 0;
   seconds: number = 0;
+  allow = false;
   public displayProgressBar = false;
   public displayExportButton = true;
   public file: any;
@@ -78,13 +79,20 @@ export class DashboardComponent implements OnInit {
     const timer$ = interval(1000);
 
     const subscribe = timer$.subscribe(second => {
+      this.allow = false;
       this.value = (second * 300) / 30;
       this.seconds = second;
 
       if (this.seconds === 11) {
         subscribe.unsubscribe();
         this.displayProgressBar = !this.displayProgressBar;
-        this.displayExportButton = !this.displayExportButton;
+        // this.displayExportButton = !this.displayExportButton;
+		    var path = 'ai-schema-template.json';
+        this.http.get<any>('assets/output/' + path).subscribe(data => {
+          if(data != null){
+            this.allow = true;
+          }
+        });
       }
     });
   }
@@ -97,5 +105,19 @@ export class DashboardComponent implements OnInit {
       .post<any>(url, formData).pipe(
         switchMap((res: {message:string}) => { console.log(res); return of(res); })
       );
+  }
+
+  export() {
+    var path = 'ai-schema-template.json';
+    this.http.get<any>('assets/output/' + path).subscribe(data => {
+      console.log(data);
+      const jsonData = JSON.stringify(data);
+      const blob = new Blob([jsonData], { type: 'application/json' });
+
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      link.download = 'ai-schema-template.json';
+      link.click();
+    });
   }
 }
