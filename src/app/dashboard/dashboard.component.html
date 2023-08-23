@@ -5,30 +5,36 @@
         <!-- <button>About us</button> -->
     </div>
     <div id="description">
-        We will use AI algorithms to help you solve all your troubles. 
+        Design to Schema Code Auto Generator Launched
     </div>
-    <div id="description_1">All you need to do is import the design into our Intelligent UI Master, and a fresh schema template will be generated for you immediately.</div>
+    <div id="description_1">Upload a image designed with angular-material, start converting it to expected schema code.</div>
+    <div id="description_2">Render in real time. Export code for you.</div>
     <div id="container">
         <div id="upload">
-			<button (click)="convert()">start convert</button>
+            <!-- <button (click)="convert()">start convert</button> -->
             <div id="uploadBox">
                 <div id="progressWindow">
-                    <div id="uploadImg">
+                    <div *ngIf="imageUrl">
+                        <img [src]="imageUrl" alt="Uploaded Image">
+                    </div>
+                    <div *ngIf="!imageUrl" id="uploadImg">
                         <img src="assets/images/uploadDesign.svg">
                     </div>
-                        <div class="drag-area" (dragover)="dragStarted($event)">
-                            <div class="icon"> <i class="fas fa-cloud-upload-alt"></i></div>
-                            <header> Drag & Drop to Upload File</header>
-                            <span>OR</span>
-                            <button id="browsefile" (click)="browsefileEvent($event)">Browse File</button>
-                            
-                                <input id="inputfield" type="file" (change)="uploadImageInput($event)" hidden>
-                            
+                    <div class="drag-area" (dragover)="dragStarted($event)">
+                        <div class="icon"> <i class="fas fa-cloud-upload-alt"></i></div>
+                        <header> Drag & Drop to Upload File</header>
+                        <span>OR</span>
+                        <div id="upload_button">
+                            <label class="file-upload-button">
+                                <span >Browse File</span>
+                                <input type="file" (change)="handleFileInput($event)" hidden>
+                              </label>
+                            <button id="browsefile" (click)="browsefileEvent($event)">Start Convert</button>
                         </div>
+                    </div>
                 </div>
                 <div id="fileName" *ngIf="fileName!==''">
-                    seleted file:{{fileName}}<br>
-                    last modify:{{fileLastModifyTime}}
+                    seleted file:{{fileName}}<br> last modify:{{fileLastModifyTime}}
                 </div>
             </div>
         </div>
@@ -38,7 +44,7 @@
                     <img src="assets/images/dataOutput.svg">
                 </div>
                 <div id="progressText"><label><b>Customersize a designed template</b><br>Choose from thousands of design from you</label></div>
-                <div id="progressBar" >
+                <div id="progressBar">
                     <mat-progress-bar *ngIf="displayProgressBar" mode="determinate" [value]="value"></mat-progress-bar>
                 </div>
             </div>

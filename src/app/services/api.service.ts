@@ -16,6 +16,16 @@ export class ApiService {
     public RoboFlowURL: string = 'https://detect.roboflow.com/angular-material-component-model/7';
     public storeDataAPI: string = 'http://127.0.0.1:5000/data_store';
     public downloadJSONAPI: string = 'http://127.0.0.1:5000/download-json';
+    public getImageAPI: string = 'http://127.0.0.1:5000/get-image';
+
+    public getImageURL(file: File): Observable<any>{
+        const formData = new FormData();
+        formData.append('image', file);
+        return this.http.post(this.getImageAPI, formData).pipe(
+            take(1),
+            map(res=>res)
+            )
+    }
     /*
     use example:
     this.api.getYoloCustomedData(file).subscribe(

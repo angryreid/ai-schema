@@ -26,12 +26,10 @@ export class DashboardComponent implements OnInit {
   public fileLastModifyTime: string = "";
   public showSchemaPage: boolean = true;
   public schemaConfig: Layout = {};
-  loading: boolean = true;
-  response = {};
+  loading: boolean = false;
+  public imageUrl: string = '';
   ngOnInit() {
-    setTimeout(() => {
-      this.loading = false;
-    }, 2000);
+
   }
 
   value = 0;
@@ -40,6 +38,7 @@ export class DashboardComponent implements OnInit {
   public displayProgressBar = false;
   public displayExportButton = true;
   public file: any;
+  public uploadFile: any;
   public inputfield: any;
   public browsefile: any;
   public resposne: ResponseData = { predictions: [] };
@@ -115,28 +114,35 @@ export class DashboardComponent implements OnInit {
 
 
   browsefileEvent(event: any) {
-    this.inputfield.click();
+    this.loading = true;
+    this.apiService.getYoloCustomedData(this.uploadFile).subscribe(res=>{
+      console.log('get yolo identified data', res);
+      if(res.statusCode===200){
+        this.resposne = res;
+        this.allow = true
+        this.getSchemaPageData();
+        this.loading = false;
+      } 
+    });
   }
 
   handleFileInput(event: any) {
     console.log(event.target.files[0]);
-    const file: any = event.target.files[0];
-    if (file) {
-      this.fileName = file.name;
-      this.fileLastModifyTime = file.lastModifiedDate.toString();
+    this.uploadFile = event.target.files[0];
+    if (this.uploadFile) {
+      this.fileName = this.uploadFile.name;
+      this.fileLastModifyTime = this.uploadFile.lastModifiedDate.toString();
       // const formData: FormData = new FormData();
       // formData.append('picFile', file);
       // const upload$ = this.http.post("http://127.0.0.1:5000/up_file",formData);
       // upload$.subscribe();
       // this.postFile(file).subscribe((res)=>{alert(res.message)});
-      this.apiService.getYoloCustomedData(file).subscribe(res=>{
-        console.log('get yolo identified data', res);
-        if(res.statusCode===200){
-          this.resposne = res;
-          this.allow = true
-          this.getSchemaPageData();
-        } 
-      });
+      this.apiService.getImageURL(this.uploadFile).subscribe(
+        res=>{
+          console.log('get image URL', res);
+          this.imageUrl = res.imageUrl;
+        }
+      )
     }
   }
   convert() {
