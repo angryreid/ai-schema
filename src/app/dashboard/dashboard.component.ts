@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { interval } from 'rxjs';
 
 import { Observable, of, switchMap } from 'rxjs';
@@ -12,7 +12,7 @@ import { error } from 'console';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private elementRef: ElementRef) { }
   public fileName: string = "";
   public fileLastModifyTime: string = "";
   loading: boolean = true;
@@ -23,8 +23,42 @@ export class DashboardComponent implements OnInit {
 
   value = 0;
   seconds: number = 0;
+  allow = false;
   public displayProgressBar = false;
-  public displayExportButton = false;
+  public displayExportButton = true;
+  public file: any;
+  public inputfield: any;
+  public browsefile:any;
+
+
+  ngAfterViewInit() {
+    const dropArea = this.elementRef.nativeElement.querySelector('.drag-area');
+    dropArea.addEventListener('dragover', (event: any) => {
+      this.file= event.dataTransfer.files[0];
+      const fileType = event.dataTransfer.items[0].type;
+
+      const validExtensions = ['image/jpeg', 'image/jpg', 'image/png'];
+      if (validExtensions.includes(fileType)) {
+        let fileReader = new FileReader();
+        fileReader.onload = ()=> {
+          let fileUrl = fileReader.result;
+          let imgTag = `<img src="${fileUrl}" alt="">`;
+          dropArea.innerHTML = imgTag;
+        }
+        fileReader.readAsDataURL(this.file);
+      } else {
+        alert('This is not an Image File!');
+      }
+      console.log('sss',this.file)
+    });
+
+    this.browsefile = this.elementRef.nativeElement.querySelector('#browsefile');
+    this.inputfield = this.elementRef.nativeElement.querySelector('#inputfield');
+  }
+
+  browsefileEvent(event: any) {
+    this.inputfield.click();
+  }
   
   handleFileInput(event: any) {
     console.log(event.target.files[0]);
@@ -45,13 +79,20 @@ export class DashboardComponent implements OnInit {
     const timer$ = interval(1000);
 
     const subscribe = timer$.subscribe(second => {
+      this.allow = false;
       this.value = (second * 300) / 30;
       this.seconds = second;
 
       if (this.seconds === 11) {
         subscribe.unsubscribe();
         this.displayProgressBar = !this.displayProgressBar;
-        this.displayExportButton = !this.displayExportButton;
+        // this.displayExportButton = !this.displayExportButton;
+		    var path = 'ai-schema-template.json';
+        this.http.get<any>('assets/output/' + path).subscribe(data => {
+          if(data != null){
+            this.allow = true;
+          }
+        });
       }
     });
   }
@@ -64,5 +105,19 @@ export class DashboardComponent implements OnInit {
       .post<any>(url, formData).pipe(
         switchMap((res: {message:string}) => { console.log(res); return of(res); })
       );
+  }
+
+  export() {
+    var path = 'ai-schema-template.json';
+    this.http.get<any>('assets/output/' + path).subscribe(data => {
+      console.log(data);
+      const jsonData = JSON.stringify(data);
+      const blob = new Blob([jsonData], { type: 'application/json' });
+
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      link.download = 'ai-schema-template.json';
+      link.click();
+    });
   }
 }

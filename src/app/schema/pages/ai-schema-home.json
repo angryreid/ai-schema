@@ -5,7 +5,7 @@
       "children": [
         {
           "class": "",
-          "component": "mat-slide-toggle",
+          "component": "app-schema-button",
           "props": {
             "text": "Home!"
           }
@@ -64,9 +64,9 @@
       "children": [
         {
           "class": "",
-          "component": "mat-slide-toggle",
+          "component": "app-schema-card",
           "props": {
-            "text": "Footer here"
+            "isBasic": false
           }
         }
       ]

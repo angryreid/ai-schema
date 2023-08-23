@@ -20,6 +20,8 @@ import { SchemaTableComponent } from './libs/schema-table/schema-table.component
 import { SchemaRadioComponent } from './libs/schema-radio/schema-radio.component';
 import { SchemaInputComponent } from './libs/schema-input/schema-input.component';
 
+import { MatTableModule } from '@angular/material/table';  
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +43,8 @@ import { SchemaInputComponent } from './libs/schema-input/schema-input.component
     LibModule,
     BrowserAnimationsModule,
     MatProgressBarModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

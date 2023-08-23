@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {MatRadioModule} from '@angular/material/radio';
 
 @Component({
   selector: 'app-schema-radio',
@@ -12,4 +13,5 @@ export class SchemaRadioComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  contacts: string[] = ['Manager', 'Team members', 'Email', 'Social Media'];
 }
