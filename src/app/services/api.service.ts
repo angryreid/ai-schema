@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 import { map, take } from "rxjs/operators";
 import axios from 'axios';
 import { ResponseData } from "./common.type";
-import { SchemaData } from "../models/layout.modle";
+import { Layout, SchemaData } from "../models/layout.modle";
 
 @Injectable({
     providedIn: 'root',
@@ -74,15 +74,15 @@ export class ApiService {
         const params = {
             data: data,
             fileName: fileName
-           }
-           this.http.post(this.storeDataAPI, params).pipe(take(1)).subscribe(
-            res=>console.log('store data successfully', res)
-           );
+        }
+        this.http.post(this.storeDataAPI, params).pipe(take(1)).subscribe(
+            res => console.log('store data successfully', res)
+        );
     }
 
     public getJSONData(): void {
         this.http.get(this.downloadJSONAPI).pipe(take(1)).subscribe(
-            res=>{
+            res => {
                 console.log('download data successfully', res);
                 const jsonData = JSON.stringify(res);
                 // Create a Blob from the JSON data
@@ -93,10 +93,10 @@ export class ApiService {
                 link.download = 'ai-schema-template.json';
                 link.click();
             }
-           );
+        );
     }
 
-    public getSchemaJsonData(resposne: ResponseData, name: string) {
+    public getSchemaJsonData(resposne: ResponseData, name: string = 'temp') {
         const tempSchema: SchemaData = {
             id: "ai-schema-" + name,
             layout: {
@@ -121,16 +121,16 @@ export class ApiService {
         ]);
         resposne.predictions.forEach(data => {
             tempSchema.layout.body?.children.push({
-                class: '',
+                class: 'widget',
                 component: widgetMapping.get(data.class),
                 props: {
                     isBasic: data.class === 'button-basic'
                 }
             });
         });
-        let fileName = tempSchema.id ? tempSchema.id + '.json':'ai-schema-template.json'
+        let fileName = tempSchema.id ? tempSchema.id + '.json' : 'ai-schema-template.json'
         this.storeJSONData(tempSchema, fileName);
-        return tempSchema;
+        return tempSchema.layout;
     }
 
 }

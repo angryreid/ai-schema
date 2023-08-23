@@ -131,6 +131,10 @@
                     opacity: 0.5;
                 }
             }
+            .app-layout{
+                display: block;
+                height: 330px;
+            }
         }
         #upload{
             box-shadow:2px 2px 5px #b4b4b4;
@@ -239,9 +243,3 @@
         }
     }
 }
-
-.boarder-bottom{
-    // border: 1px solid black;
-    // border-radius: 10px;
-}
-
