@@ -15,14 +15,14 @@
                     <div id="uploadImg">
                         <img src="assets/images/uploadDesign.svg">
                     </div>
-                        <div class="drag-area">
+                        <div class="drag-area" (dragover)="dragStarted($event)">
                             <div class="icon"> <i class="fas fa-cloud-upload-alt"></i></div>
                             <header> Drag & Drop to Upload File</header>
                             <span>OR</span>
                             <button id="browsefile" (click)="browsefileEvent($event)">Browse File</button>
-                            <form id="inputfield">
-                                <input type="input" hidden>
-                            </form>
+                            
+                                <input id="inputfield" type="file" (change)="uploadImageInput($event)" hidden>
+                            
                         </div>
                 </div>
                 <div id="fileName" *ngIf="fileName!==''">
