@@ -96,7 +96,7 @@ export class ApiService {
         );
     }
 
-    public getSchemaJsonData(resposne: ResponseData, name: string = 'temp') {
+    public getSchemaJsonData(resposne: ResponseData, name: string = 'template') {
         const tempSchema: SchemaData = {
             id: "ai-schema-" + name,
             layout: {
@@ -112,8 +112,8 @@ export class ApiService {
             }
         };
         const widgetMapping = new Map<string, string>([
-            ['button-basic', 'app-schema-button'],
-            ['button-primary', 'app-schema-button'],
+            ['button_basic', 'app-schema-button'],
+            ['button_primary', 'app-schema-button'],
             ['card', 'app-schema-card'],
             ['table', 'app-schema-table'],
             ['radio', 'app-schema-radio'],
