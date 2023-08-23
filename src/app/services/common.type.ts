@@ -3,10 +3,10 @@ export interface ResponseData {
 }
 
 export interface Rredictions {
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-    confidence: number;
+    x?: number;
+    y?: number;
+    width?: number;
+    height?: number;
+    confidence?: number;
     class: string;
 }

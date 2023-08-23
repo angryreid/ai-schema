@@ -1,10 +1,10 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import { map, take } from "rxjs/operators";
 import axios from 'axios';
 import { ResponseData } from "./common.type";
-import { SchemaData } from "../models/layout.modle";
+import { Layout, SchemaData } from "../models/layout.modle";
 
 @Injectable({
     providedIn: 'root',
@@ -14,7 +14,8 @@ export class ApiService {
 
     public YoloURL: string = 'http://127.0.0.1:5000/file_rec';
     public RoboFlowURL: string = 'https://detect.roboflow.com/angular-material-component-model/7';
-
+    public storeDataAPI: string = 'http://127.0.0.1:5000/data_store';
+    public downloadJSONAPI: string = 'http://127.0.0.1:5000/download-json';
     /*
     use example:
     this.api.getYoloCustomedData(file).subscribe(
@@ -69,7 +70,33 @@ export class ApiService {
         })
     }
 
-    public getSchemaJsonData(resposne: ResponseData, name: string) {
+    public storeJSONData(data: SchemaData, fileName: string): void {
+        const params = {
+            data: data,
+            fileName: fileName
+        }
+        this.http.post(this.storeDataAPI, params).pipe(take(1)).subscribe(
+            res => console.log('store data successfully', res)
+        );
+    }
+
+    public getJSONData(): void {
+        this.http.get(this.downloadJSONAPI).pipe(take(1)).subscribe(
+            res => {
+                console.log('download data successfully', res);
+                const jsonData = JSON.stringify(res);
+                // Create a Blob from the JSON data
+                const blob = new Blob([jsonData], { type: 'application/json' });
+                // Create a download link and trigger a download
+                const link = document.createElement('a');
+                link.href = window.URL.createObjectURL(blob);
+                link.download = 'ai-schema-template.json';
+                link.click();
+            }
+        );
+    }
+
+    public getSchemaJsonData(resposne: ResponseData, name: string = 'template') {
         const tempSchema: SchemaData = {
             id: "ai-schema-" + name,
             layout: {
@@ -85,8 +112,8 @@ export class ApiService {
             }
         };
         const widgetMapping = new Map<string, string>([
-            ['button-basic', 'app-schema-button'],
-            ['button-primary', 'app-schema-button'],
+            ['button_basic', 'app-schema-button'],
+            ['button_primary', 'app-schema-button'],
             ['card', 'app-schema-card'],
             ['table', 'app-schema-table'],
             ['radio', 'app-schema-radio'],
@@ -94,14 +121,16 @@ export class ApiService {
         ]);
         resposne.predictions.forEach(data => {
             tempSchema.layout.body?.children.push({
-                class: '',
+                class: 'widget',
                 component: widgetMapping.get(data.class),
                 props: {
                     isBasic: data.class === 'button-basic'
                 }
             });
         });
-        return tempSchema;
+        let fileName = tempSchema.id ? tempSchema.id + '.json' : 'ai-schema-template.json'
+        this.storeJSONData(tempSchema, fileName);
+        return tempSchema.layout;
     }
 
 }

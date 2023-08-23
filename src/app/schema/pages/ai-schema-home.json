@@ -64,7 +64,7 @@
       "children": [
         {
           "class": "",
-          "component": "app-schema-button",
+          "component": "app-schema-card",
           "props": {
             "isBasic": false
           }

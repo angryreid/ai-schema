@@ -5,9 +5,11 @@ import { Observable, of, switchMap } from 'rxjs';
 import { map, catchError, tap } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import * as _ from 'lodash';
-import {ApiService} from '../services/api.service';
 
-
+import { error } from 'console';
+import { Layout } from '../models/layout.modle';
+import { ApiService } from '../services/api.service';
+import { ResponseData } from '../services/common.type';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -15,29 +17,38 @@ import {ApiService} from '../services/api.service';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private http: HttpClient,
+  constructor(
+    private http: HttpClient,
     private elementRef: ElementRef,
     private apiService: ApiService
-  ) {
-    }
+  ) { }
   public fileName: string = "";
   public fileLastModifyTime: string = "";
+  public showSchemaPage: boolean = true;
+  public schemaConfig: Layout = {};
   loading: boolean = true;
   response = {};
   ngOnInit() {
     setTimeout(() => {
       this.loading = false;
-    }, 2000)
+    }, 2000);
   }
 
   value = 0;
   seconds: number = 0;
+  public allow = false;
   public displayProgressBar = false;
   public displayExportButton = true;
   public file: any;
   public inputfield: any;
   public browsefile: any;
+  public resposne: ResponseData = { predictions: [] };
 
+
+  getSchemaPageData(): void {
+    this.showSchemaPage = false;
+    this.schemaConfig = this.apiService.getSchemaJsonData(this.resposne);
+  }
 
   ngAfterViewInit() {
     const dropArea = this.elementRef.nativeElement.querySelector('.drag-area');
@@ -64,9 +75,15 @@ export class DashboardComponent implements OnInit {
   uploadImageInput(e: any) {
     const file = _.get(e, 'target.files[0]');
     this.imageValidation(_.get(e, 'target.files[0].type'));
-    this.apiService.getRoboflowTrainedData(file).then((res) => {
-      alert('Your design is uploaded success!!')
-      this.response = res;
+   
+    this.apiService.getYoloCustomedData(file).subscribe(res=>{
+      console.log('get yolo identified data', res);
+      if(res.statusCode===200){
+        alert('Your design is uploaded success!!')
+        this.resposne = res;
+        this.allow = true
+        this.getSchemaPageData();
+      } 
     });
     // this.base64Convert(e);
   }
@@ -111,7 +128,15 @@ export class DashboardComponent implements OnInit {
       // formData.append('picFile', file);
       // const upload$ = this.http.post("http://127.0.0.1:5000/up_file",formData);
       // upload$.subscribe();
-      this.postFile(file).subscribe((res) => { alert(res.message) });
+      // this.postFile(file).subscribe((res)=>{alert(res.message)});
+      this.apiService.getYoloCustomedData(file).subscribe(res=>{
+        console.log('get yolo identified data', res);
+        if(res.statusCode===200){
+          this.resposne = res;
+          this.allow = true
+          this.getSchemaPageData();
+        } 
+      });
     }
   }
   convert() {
@@ -120,13 +145,20 @@ export class DashboardComponent implements OnInit {
     const timer$ = interval(1000);
 
     const subscribe = timer$.subscribe(second => {
+      this.allow = false;
       this.value = (second * 300) / 30;
       this.seconds = second;
 
       if (this.seconds === 11) {
         subscribe.unsubscribe();
         this.displayProgressBar = !this.displayProgressBar;
-        this.displayExportButton = !this.displayExportButton;
+        // this.displayExportButton = !this.displayExportButton;
+        var path = 'ai-schema-template.json';
+        this.http.get<any>('assets/output/' + path).subscribe(data => {
+          if (data != null) {
+            this.allow = true;
+          }
+        });
       }
     });
   }
@@ -141,6 +173,8 @@ export class DashboardComponent implements OnInit {
       );
   }
 
-
-
+  export() {
+   this.apiService.getJSONData();
+    }
+   
 }

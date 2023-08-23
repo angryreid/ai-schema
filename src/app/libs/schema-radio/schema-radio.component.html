@@ -1,1 +1,13 @@
-<p>schema-radio works!</p>
+<label id="example-radio-group-label">From which channel did you hear about our website?</label>
+<mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group">
+  <mat-radio-button class="example-radio-button" *ngFor="let contact of contacts" [value]="contact">
+    {{contact}}
+  </mat-radio-button>
+</mat-radio-group>
+
+<label id="example-radio-group-label">Would you recommend this website to others?</label><br>
+<mat-radio-group aria-label="Select an option" >
+    <mat-radio-button class="example-radio-button" value="1">Yes</mat-radio-button>
+    <mat-radio-button class="example-radio-button" value="2">No</mat-radio-button>
+</mat-radio-group>
+  

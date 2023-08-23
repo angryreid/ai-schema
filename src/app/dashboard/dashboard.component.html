@@ -10,6 +10,7 @@
     <div id="description_1">All you need to do is import the design into our Intelligent UI Master, and a fresh schema template will be generated for you immediately.</div>
     <div id="container">
         <div id="upload">
+			<button (click)="convert()">start convert</button>
             <div id="uploadBox">
                 <div id="progressWindow">
                     <div id="uploadImg">
@@ -32,7 +33,7 @@
             </div>
         </div>
         <div id="progess">
-            <div id="progressWindow" >
+            <div id="progressWindow" *ngIf="showSchemaPage; else SchemaTemp">
                 <div id="progressImg">
                     <img src="assets/images/dataOutput.svg">
                 </div>
@@ -41,8 +42,11 @@
                     <mat-progress-bar *ngIf="displayProgressBar" mode="determinate" [value]="value"></mat-progress-bar>
                 </div>
             </div>
+            <ng-template #SchemaTemp>
+                <app-layout-engine [config]="schemaConfig" class="app-layout"></app-layout-engine>
+            </ng-template>
             <div id="export">
-                <button *ngIf="displayExportButton">Export Code</button>
+                <button *ngIf="displayExportButton" (click)="export()" [disabled]="!allow">export code</button>
             </div>
         </div>
     </div>

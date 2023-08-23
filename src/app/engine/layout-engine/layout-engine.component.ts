@@ -10,8 +10,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class LayoutEngineComponent implements OnInit {
   @Input() pageName: string;
-
-  public config: Layout = {};
+  @Input() config: Layout = {};
+  
   public layoutId: string = 'layout-1';
 
   constructor(

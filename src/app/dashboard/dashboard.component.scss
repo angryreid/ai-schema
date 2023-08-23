@@ -126,6 +126,15 @@
                     border-radius: 10px;
                     // box-shadow: 0px 0px 2px 2px rgb(0,0,0);
                 }
+				button:disabled{
+                    background: #5356ad;
+                    opacity: 0.5;
+                }
+            }
+            .app-layout{
+                display: block;
+                height: 300px;
+                padding-top: 20px;
             }
         }
         #upload{
@@ -235,9 +244,3 @@
         }
     }
 }
-
-.boarder-bottom{
-    // border: 1px solid black;
-    // border-radius: 10px;
-}
-
