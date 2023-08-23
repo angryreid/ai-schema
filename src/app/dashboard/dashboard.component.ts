@@ -4,6 +4,8 @@ import { interval } from 'rxjs';
 import { Observable, of, switchMap } from 'rxjs';
 import { map, catchError, tap } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import * as _ from 'lodash';
+
 import { error } from 'console';
 import { Layout } from '../models/layout.modle';
 import { ApiService } from '../services/api.service';
@@ -25,6 +27,7 @@ export class DashboardComponent implements OnInit {
   public showSchemaPage: boolean = true;
   public schemaConfig: Layout = {};
   loading: boolean = true;
+  response = {};
   ngOnInit() {
     setTimeout(() => {
       this.loading = false;
@@ -50,27 +53,66 @@ export class DashboardComponent implements OnInit {
   ngAfterViewInit() {
     const dropArea = this.elementRef.nativeElement.querySelector('.drag-area');
     dropArea.addEventListener('dragover', (event: any) => {
-      this.file = event.dataTransfer.files[0];
+      event.stopPropagation();
+      event.preventDefault();
+      const file = event.dataTransfer.files[0];
       const fileType = event.dataTransfer.items[0].type;
-
-      const validExtensions = ['image/jpeg', 'image/jpg', 'image/png'];
-      if (validExtensions.includes(fileType)) {
-        let fileReader = new FileReader();
-        fileReader.onload = () => {
-          let fileUrl = fileReader.result;
-          let imgTag = `<img src="${fileUrl}" alt="">`;
-          dropArea.innerHTML = imgTag;
-        }
-        fileReader.readAsDataURL(this.file);
-      } else {
-        alert('This is not an Image File!');
-      }
-      console.log('sss', this.file)
+      this.imageValidation(fileType);
+      this.uploadImageInput(file);
     });
 
     this.browsefile = this.elementRef.nativeElement.querySelector('#browsefile');
-    this.inputfield = this.elementRef.nativeElement.querySelector('#inputfield');
+    this.inputfield = document.querySelector('#inputfield')
   }
+
+  imageValidation(fileType: any) {
+    const validExtensions = ['image/jpeg', 'image/jpg', 'image/png'];
+    if (!validExtensions.includes(fileType)) {
+      alert('This is not an Image File!');
+    } 
+  }
+
+  uploadImageInput(e: any) {
+    const file = _.get(e, 'target.files[0]');
+    this.imageValidation(_.get(e, 'target.files[0].type'));
+   
+    this.apiService.getYoloCustomedData(file).subscribe(res=>{
+      console.log('get yolo identified data', res);
+      if(res.statusCode===200){
+        alert('Your design is uploaded success!!')
+        this.resposne = res;
+        this.allow = true
+        this.getSchemaPageData();
+      } 
+    });
+    // this.base64Convert(e);
+  }
+
+  // async base64Convert(e: any) { 
+    // const file = _.get(e, 'target.files[0]');
+   
+    // const reader = new FileReader();
+
+    // reader.addEventListener("load", () => {
+    //   console.log('base64:', reader.result);
+    //   this.apiService.getRoboflowTrainedData(reader.result).then((res) => {
+    //     alert('Your design is uploaded success!!')
+    //     this.response = res;
+    //   });
+
+    // if (file) { 
+    //   reader.readAsDataURL(file);
+    // }
+  // })
+// };
+
+
+  dragStarted(event: DragEvent): void {
+    event.stopPropagation();
+    event.preventDefault();
+    console.log(event);
+  }
+
 
   browsefileEvent(event: any) {
     this.inputfield.click();
