@@ -33,7 +33,7 @@ export class DashboardComponent implements OnInit {
 
   value = 0;
   seconds: number = 0;
-  allow = false;
+  public allow = false;
   public displayProgressBar = false;
   public displayExportButton = true;
   public file: any;
@@ -42,7 +42,7 @@ export class DashboardComponent implements OnInit {
   public resposne: ResponseData = { predictions: [] };
 
 
-  getSchemaPageData() {
+  getSchemaPageData(): void {
     this.showSchemaPage = false;
     this.schemaConfig = this.apiService.getSchemaJsonData(this.resposne);
   }
@@ -86,7 +86,15 @@ export class DashboardComponent implements OnInit {
       // formData.append('picFile', file);
       // const upload$ = this.http.post("http://127.0.0.1:5000/up_file",formData);
       // upload$.subscribe();
-      this.postFile(file).subscribe((res) => { alert(res.message) });
+      // this.postFile(file).subscribe((res)=>{alert(res.message)});
+      this.apiService.getYoloCustomedData(file).subscribe(res=>{
+        console.log('get yolo identified data', res);
+        if(res.statusCode===200){
+          this.resposne = res;
+          this.allow = true
+          this.getSchemaPageData();
+        } 
+      });
     }
   }
   convert() {
@@ -124,16 +132,7 @@ export class DashboardComponent implements OnInit {
   }
 
   export() {
-    var path = 'ai-schema-template.json';
-    this.http.get<any>('assets/output/' + path).subscribe(data => {
-      console.log(data);
-      const jsonData = JSON.stringify(data);
-      const blob = new Blob([jsonData], { type: 'application/json' });
-
-      const link = document.createElement('a');
-      link.href = window.URL.createObjectURL(blob);
-      link.download = 'ai-schema-template.json';
-      link.click();
-    });
-  }
+   this.apiService.getJSONData();
+    }
+   
 }
