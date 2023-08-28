@@ -10,7 +10,7 @@ export class AppComponent implements OnInit {
   title = 'ai-schema';
   constructor(private router:Router) { }
   ngOnInit() {
-    this.router.navigate(['dashboard']);
+    // this.router.navigate(['dashboard']);
     // this.router.navigate(['home']);
   }
 }

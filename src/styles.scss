@@ -6,3 +6,24 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     font-family: 'myFont'; 
     src: url('assets/font/Monoton-Regular.ttf'); 
 }
+
+.d-flex {
+    display: flex;
+}
+
+.justify-content-between {
+    justify-content: space-between;
+}
+
+.as-plr-24 {
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.as-pt-24 {
+    padding-top: 24px;
+}
+
+.as-pb-24 {
+    padding-bottom: 24px;
+}

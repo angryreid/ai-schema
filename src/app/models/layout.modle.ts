@@ -1,12 +1,15 @@
 export interface Layout {
   // create a property for the id
   header?: {
+    class?: string;
     children: Widget[]
   };
   body?: {
+    class?: string;
     children: Widget[]
   };
   footer?: {
+    class?: string;
     children: Widget[]
   };
 }

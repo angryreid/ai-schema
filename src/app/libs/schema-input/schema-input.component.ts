@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-schema-input',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./schema-input.component.scss']
 })
 export class SchemaInputComponent implements OnInit {
+  @Input() label1: string = 'User Name';
+  @Input() label2: string = 'Password';
 
   constructor() { }
 

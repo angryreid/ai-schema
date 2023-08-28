@@ -2,34 +2,26 @@
   "id": "ai-schema-about",
   "layout": {
     "header": {
+      "class": "d-flex as-pt-24 as-plr-24",
       "children": [
         {
           "class": "",
-          "component": "mat-slide-toggle",
+          "component": "app-schema-card",
           "props": {
-            "text": "Home!"
+            "longText": "This is a long text"
           }
         }
       ]
     },
     "body": {
+      "class": "d-flex as-pt-24 as-plr-24",
       "children": [
         {
           "class": "",
-          "component": "mat-slide-toggle",
+          "component": "app-schema-button",
           "props": {
-            "text": "Welcome to Copilot!"
-          }
-        }
-      ]
-    },
-    "footer": {
-      "children": [
-        {
-          "class": "",
-          "component": "mat-slide-toggle",
-          "props": {
-            "text": "Footer here"
+            "isBasic": false,
+            "buttonText": "This is a button"
           }
         }
       ]

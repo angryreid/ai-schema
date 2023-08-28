@@ -1,13 +1,13 @@
 <div [id]="layoutId" class="layout-container">
   <div class="layout-header" *ngIf="config.header">
     <ng-container *ngIf="config.header?.children">
-      <app-widget-engine [widgets]="config.header.children"></app-widget-engine>
+      <app-widget-engine [class]="config.header.class || ''" [widgets]="config.header.children"></app-widget-engine>
     </ng-container>
   </div>
   <div class="layout-body" *ngIf="config.body">
-    <app-widget-engine [widgets]="config.body.children"></app-widget-engine>
+    <app-widget-engine [class]="config.body.class || ''" [widgets]="config.body.children"></app-widget-engine>
   </div>
   <div class="layout-footer" *ngIf="config.footer">
-    <app-widget-engine [widgets]="config.footer.children"></app-widget-engine>
-  </div>
+    <app-widget-engine [class]="config.footer.class || ''" [widgets]="config.footer.children"></app-widget-engine>
+</div>
 </div>

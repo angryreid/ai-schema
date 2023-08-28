@@ -9,6 +9,7 @@ import { WidgetEngineService } from 'src/app/services/widget-engine.service';
 })
 export class WidgetEngineComponent implements OnInit {
   @Input() widgets: Widget[] = [];
+  @Input() class: string = '';
   @ViewChild("widgetsRef", {read: ViewContainerRef, static: true}) widgetsRef!: ViewContainerRef;
   // create a view container ref mapping to widgetsRef
 

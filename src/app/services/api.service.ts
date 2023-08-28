@@ -1,10 +1,10 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, of } from "rxjs";
 import { map, take } from "rxjs/operators";
 import axios from 'axios';
 import { ResponseData } from "./common.type";
-import { Layout, SchemaData } from "../models/layout.modle";
+import { SchemaData } from "../models/layout.modle";
 
 @Injectable({
     providedIn: 'root',

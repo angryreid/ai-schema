@@ -1,72 +1,43 @@
 {
   "id": "ai-schema-home",
   "layout": {
-    "header": {
-      "children": [
-        {
-          "class": "",
-          "component": "app-schema-button",
-          "props": {
-            "text": "Home!"
-          }
-        }
-      ]
-    },
     "body": {
+      "class": "as-plr-24 as-pt-24",
       "children": [
         {
-          "class": "",
-          "component": "mat-slide-toggle",
+          "class": "as-pt-24",
+          "component": "app-schema-card",
           "props": {
-            "text": "Welcome to Copilot!"
+            "isBasic": false
           }
         },
         {
           "class": "",
-          "component": "mat-button",
+          "component": "app-schema-input",
           "props": {
-            "color": "primary",
-            "variant": "raised",
-            "size": "large",
-            "icon": "home",
-            "iconPosition": "left",
-            "iconColor": "primary",
-            "iconSize": "large",
-            "iconVariant": "raised",
-            "iconText": "Welcome to Copilot!"
-          }
-        },
-        {
-          "class": "",
-          "component": "mat-divider",
-          "props": {
-            "text": "Welcome to Copilot!",
-            "color": "primary"
-          }
-        },
-        {
-          "class": "",
-          "component": "mat-slide-toggle",
-          "props": {
-            "text": "hello to Copilot!"
-          }
-        },
-        {
-          "class": "",
-          "component": "app-nc-card",
-          "props": {
-            "text": "hello to Copilot!"
+            "label1": "User Name",
+            "label2": "Password"
           }
         }
       ]
     },
     "footer": {
+      "class": "d-flex justify-content-between as-plr-24 as-pb-24",
       "children": [
         {
-          "class": "",
-          "component": "app-schema-card",
+          "class": "w-100",
+          "component": "app-schema-button",
           "props": {
-            "isBasic": false
+            "isBasic": true,
+            "buttonText": "Cancel"
+          }
+        },
+        {
+          "class": "w-100",
+          "component": "app-schema-button",
+          "props": {
+            "isBasic": false,
+            "buttonText": "Confirm"
           }
         }
       ]
