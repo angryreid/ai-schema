@@ -1,0 +1,54 @@
+{
+  "id": "ai-schema-wealth",
+  "layout": {
+    "header": {
+      "class": "d-flex justify-content-between as-plr-24 as-pt-24",
+      "children": [
+        {
+          "class": "",
+          "component": "app-schema-button",
+          "props": {
+            "isBasic": true,
+            "buttonText": "Back"
+          }
+        }
+      ]
+    },
+    "body": {
+      "class": "as-plr-24 as-pt-24",
+      "children": [
+        {
+          "class": "",
+          "component": "app-schema-card",
+          "props": {
+            "isBasic": false,
+            "longText": "Welcome to your Wealth Dashboard",
+            "imageSrc": "https://example.com/images/dashboard.png"
+          }
+        }
+      ]
+    },
+    "footer": {
+      "class": "d-flex justify-content-between as-plr-24 as-pb-24",
+      "children": [
+        {
+          "class": "",
+          "component": "app-schema-button",
+          "props": {
+            "isBasic": false,
+            "buttonText": "Login"
+          }
+        },
+        {
+          "class": "",
+          "component": "app-schema-button",
+          "props": {
+            "isBasic": true,
+            "buttonText": "Logout",
+            "buttonLink": "/logout"
+          }
+        }
+      ]
+    }
+  }
+}

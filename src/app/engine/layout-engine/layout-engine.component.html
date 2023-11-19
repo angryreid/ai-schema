@@ -1,8 +1,6 @@
 <div [id]="layoutId" class="layout-container">
   <div class="layout-header" *ngIf="config.header">
-    <ng-container *ngIf="config.header?.children">
       <app-widget-engine [class]="config.header.class || ''" [widgets]="config.header.children"></app-widget-engine>
-    </ng-container>
   </div>
   <div class="layout-body" *ngIf="config.body">
     <app-widget-engine [class]="config.body.class || ''" [widgets]="config.body.children"></app-widget-engine>

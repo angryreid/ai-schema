@@ -22,6 +22,13 @@ import { SchemaInputComponent } from '../libs/schema-input/schema-input.componen
 export class WidgetEngineService {
   constructor() { }
 
+  /**
+   * 
+   * @param Name 
+   * 
+   * @returns
+   *  
+   */
   getComponentType(Name: string): Type<any> {
     // return angular material  type based on  name
     switch (Name) {

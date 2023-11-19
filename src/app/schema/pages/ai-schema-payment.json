@@ -1,0 +1,27 @@
+{
+  "id": "ai-schema-payment",
+  "layout": {
+    "body": {
+      "class": "as-plr-24",
+      "children": [
+        {
+          "class": "as-pt-24",
+          "component": "ai-schema-card",
+          "props": {}
+        }
+      ]
+    },
+    "footer": {
+      "class": "as-p-24",
+      "children": [
+        {
+          "component": "ai-schema-button",
+          "props": {
+            "label": "Pay",
+            "type": "submit"
+          }
+        }
+      ]
+    }
+  }
+}

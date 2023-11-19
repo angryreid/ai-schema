@@ -11,6 +11,7 @@ export class SchemaButtonComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    // console.log('isBasic', this.isBasic);
   }
 
 }

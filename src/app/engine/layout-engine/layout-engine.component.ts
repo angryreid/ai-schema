@@ -27,10 +27,17 @@ export class LayoutEngineComponent implements OnInit {
     console.log('this.pageName', this.pageName)
     this.metadataService.getMetadata(this.pageName).subscribe((data: any) => {
       this.config = data?.layout;
+      console.log('this.config', this.config)
       this.layoutId = data?.id;
       });
   }
 
   ngOnInit(): void {
   }
+
+  // create a destroy function
+  ngOnDestroy(): void {
+    console.log('destroy')
+  }
+
 }

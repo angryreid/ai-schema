@@ -12,6 +12,9 @@ const routes: Routes = [
   // creta a default path that redirects to the home page
   // { path: '**', redirectTo: 'home' },
   { path: 'dashboard', component: DashboardComponent },
+  // create a path of wealth that use the DynamicLandingComponent
+  { path: 'wealth', component: DynamicLandingComponent },
+  // 
   
 ];
 
