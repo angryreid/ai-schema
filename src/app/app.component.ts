@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   title = 'ai-schema';
+  name = 'hello-world';
   constructor(private router:Router) { }
   ngOnInit() {
     this.router.navigate(['dashboard']);
