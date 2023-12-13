@@ -1,45 +1,59 @@
-// webpack.config.js
-
-const { ConcatSource } = require('webpack-sources');
-
-class ReplaceStringPlugin {
-  constructor(options) {
-    // Define your options here, e.g., regex pattern and replacement string
-    this.options = options || {};
-  }
-
-  apply(compiler) {
-    // Register the plugin to the "emit" hook, which is triggered during the build process
-    compiler.hooks.emit.tapAsync('ReplaceStringPlugin', (compilation, callback) => {
-      // Iterate through all compiled assets
-      compilation.assets = Object.keys(compilation.assets).reduce((result, filename) => {
-        // Get the asset's source code
-        const assetSource = compilation.assets[filename].source();
-
-        // Replace the string using the provided regular expression and replacement string
-        const modifiedSource = assetSource.replace(this.options.regex, this.options.replacement);
-
-        // Update the asset with the modified source
-        result[filename] = new ConcatSource(modifiedSource);
-
-        return result;
-      }, {});
-
-      // Continue with the build process
-      callback();
-    });
-  }
-}
-
-
-const path = require('path');
-
 module.exports = {
-  // Your custom webpack configuration goes here
-  plugins: [
-    new ReplaceStringPlugin({
-      regex: /c/g,
-      replacement: 'your-replacement-string',
-    }),
-  ],
+  // 其他 webpack 配置...
+  module: {
+    rules: [
+      {
+        test: /\.js$/, // 匹配 js 文件
+        use: [
+          {
+            loader: 'string-replace-loader',
+            options: {
+              search: 'hello-world',
+              replace: 'your_replace_string',
+              flags: 'g' // 可选的正则表达式标志
+            }
+          }
+        ]
+      },
+      {
+        test: /\.ts$/, // 匹配 css 文件
+        use: [
+          {
+            loader: 'string-replace-loader',
+            options: {
+              search: 'hello-world',
+              replace: 'your_replace_string',
+              flags: 'g'
+            }
+          }
+        ]
+      },
+      {
+        test: /\.css$/, // 匹配 css 文件
+        use: [
+          {
+            loader: 'string-replace-loader',
+            options: {
+              search: 'hello-world',
+              replace: 'your_replace_string',
+              flags: 'g'
+            }
+          }
+        ]
+      },
+      {
+        test: /\.html$/, // 匹配 html 文件
+        use: [
+          {
+            loader: 'string-replace-loader',
+            options: {
+              search: 'hello-world',
+              replace: 'your_replace_string',
+              flags: 'g'
+            }
+          }
+        ]
+      },
+    ]
+  }
 };

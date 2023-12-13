@@ -24,7 +24,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
             "outputPath": "dist/ai-schema",
             "index": "src/index.html",
@@ -41,7 +41,9 @@
               "src/styles.scss"
             ],
             "scripts": [],
-            "extraWebpackConfig": "./webpack.config.js"
+            "customWebpackConfig": {
+              "path": "./webpack.config.js"
+            }
           },
           "configurations": {
             "production": {
@@ -53,8 +55,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "20kb",
+                  "maximumError": "40kb"
                 }
               ],
               "fileReplacements": [
