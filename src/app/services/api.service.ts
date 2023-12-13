@@ -79,6 +79,40 @@ export class ApiService {
     });
   }
 
+
+  // create a function to return a observable like of({})
+  public getMockData3(): Observable<any> {
+    return of({
+      predictions: [
+        {
+          class: 'table',
+          confidence: 0.999,
+          height: 0.1,
+          width: 0.1,
+          x: 0.1,
+          y: 0.1,
+        },
+      ],
+    });
+  }
+
+  /**
+   * create a function `combineMock` to use combinelaest to combine two observable as below
+   * observable1: getMockData
+   * observable2: getMockData2
+   * observable3: getMockData3
+   */
+
+  public combineMock2(): Observable<any> {
+    return combineLatest([this.getMockData(), this.getMockData2(), this.getMockData3()]).pipe(
+        map(([res1, res2, res3]) => {
+            return {
+                predictions: [...res1.predictions, ...res2.predictions, ...res3.predictions]
+            }
+        })
+      );
+    }
+
   /**
    * create a function `combineMock` to use combinelaest to combine two observable as below
    * observable1: getMockData

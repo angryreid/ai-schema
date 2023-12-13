@@ -13,8 +13,7 @@ const routes: Routes = [
   // { path: '**', redirectTo: 'home' },
   { path: 'dashboard', component: DashboardComponent },
   // create a path of wealth that use the DynamicLandingComponent
-  { path: 'wealth', component: DynamicLandingComponent },
-  // 
+  { path: 'wealth', component: DynamicLandingComponent }
   
 ];
 

@@ -14,7 +14,22 @@ function calculate(propertyA: number, propertyB: number, propertyC: number): num
   return propertyA + propertyB - 2 * propertyC * propertyA;
 }
 
-function doWork(x, y, z, w) {
-// Add 3 to y, then subtract 4 from both x and w. Return the product of the four numbers.
+function doWork(x: number, y: number, w: number): number {
+  // Add 3 to y, then subtract 4 from both x and w. Return the product of the three numbers.
   return (y + 3) * (x - 4) * w;
+}
+
+// create a new doWork2 function with same paramters as doWork function
+
+function doWork2(x: number, y: number, z: number, w: number): number {
+  // Add 3 to y,
+  const yPlus3 = y + 3;
+
+  // then subtract 4 from both x and w. 
+  const xMinus4 = x - 4;
+  const wMinus4 = w - 4;
+
+  // Return the product of the four numbers.
+  // Return value of yPlus3 * xMinus4 * wMinus4 * z;
+  return yPlus3 * xMinus4 * wMinus4 * z;
 }
