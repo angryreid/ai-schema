@@ -80,6 +80,12 @@ export class ApiService {
         })
     }
 
+    /**
+     * Stores JSON data to the server.
+     * 
+     * @param data - The JSON data to be stored.
+     * @param fileName - The name of the file to store the data.
+     */
     public storeJSONData(data: SchemaData, fileName: string): void {
         const params = {
             data: data,
