@@ -1,0 +1,10 @@
+@import '_colors.scss';
+
+// Use each function to generate css for each theme
+
+@each $theme, $colors in $themes {
+    .theme-#{$theme} {
+        background-color: color($colors, 'tertiary');
+        color: color($colors, 'primary');
+    }
+}

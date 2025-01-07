@@ -1,0 +1,39 @@
+// Generating color for different theme
+// theme: blue, gold, black
+// declare colors 
+
+$theme-blue: (
+    primary: #5c9ad5,
+    secondary: #0143e2,
+    tertiary: #FFFF,
+    quaternary: #000102
+);
+
+$theme-gold: (
+    primary: #FFD700,
+    secondary: #FFD700,
+    tertiary: #000102,
+    quaternary: #FFFF
+);
+
+$theme-black: (
+    primary: #000102,
+    secondary: #000102,
+    tertiary: #FFFF,
+    quaternary: #5c9ad5
+);
+
+// declare function to get color
+@function color($theme, $color) {
+  @debug $theme;
+  @debug $color;
+  @return map-get($theme, $color)
+}
+
+// declare theme list
+
+$themes: (
+    blue: $theme-blue,
+    gold: $theme-gold,
+    black: $theme-black
+);
